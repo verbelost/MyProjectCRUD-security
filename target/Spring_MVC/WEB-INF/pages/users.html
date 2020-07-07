@@ -2,11 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta content='text/html; charset=UTF-8'/>
     <title></title>
 </head>
 <body>
 <div>
+    <h1>User list</h1>
     <table border="1">
         <tr>
             <th>id</th>
@@ -23,6 +24,43 @@
             <td th:text="${user.getEmail()}"></td>
 
     </table>
+
+    <h1>Add user</h1>
+    <form action="/users/add" th:action="@{/users/add}" th:object="${user}" method="post">
+        <table>
+            <tbody>
+            <tr>
+                <td>First name:</td>
+                <td>
+                    <input type="text" th:field="*{firstName}">
+                </td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td>
+                    <input type="text" th:field="*{lastName}">
+                </td>
+            </tr>
+            <tr>
+                <td>Phone number:</td>
+                <td>
+                    <input type="text" th:field="*{phoneNumber}">
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input type="text" th:field="*{email}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="add">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
 </body>
 </html>

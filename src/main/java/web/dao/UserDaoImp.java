@@ -30,7 +30,7 @@ public class UserDaoImp implements UserDao {
     @Transactional
     @Override
     public void removeUser(long id) {
-        User user = (User) sessionFactory.getCurrentSession().load(User.class, id);
+        User user = sessionFactory.getCurrentSession().load(User.class, id);
         if (user != null) {
             sessionFactory.getCurrentSession().delete(user);
         }
@@ -39,7 +39,7 @@ public class UserDaoImp implements UserDao {
     @Transactional
     @Override
     public User getUserById(long id) {
-        return (User) sessionFactory.getCurrentSession().load(User.class, id);
+        return sessionFactory.getCurrentSession().load(User.class, id);
     }
 
     @Transactional
