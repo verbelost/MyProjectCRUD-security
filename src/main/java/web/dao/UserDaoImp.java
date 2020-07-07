@@ -23,6 +23,7 @@ public class UserDaoImp implements UserDao {
 
     @Transactional
     @Override
+
     public void updateUser(User user) {
         sessionFactory.getCurrentSession().update(user);
     }

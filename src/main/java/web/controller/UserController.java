@@ -37,11 +37,9 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @RequestMapping(value = "/users/update", method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("id") User user) {
-        if (user.getId() != 0) {
-            this.userService.updateUser(user);
-        }
+    @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
+    public String editUser(@ModelAttribute("user") User user) {
+        this.userService.updateUser(user);
         return "redirect:/users";
     }
 
