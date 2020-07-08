@@ -27,10 +27,16 @@
             <td><a th:href="@{/editUser(id=${user.getId()})}">edit</a></td>
             <td><a th:href="@{/users/delete(id=${user.getId()})}">delete</a></td>
     </table>
-    <h1>Add user</h1>
+    <h1>Edit user</h1>
     <form action="#" th:action="@{/users/add}" th:object="${user}" method="post">
         <table>
             <tbody>
+            <tr>
+                <td>id:</td>
+                <td>
+                    <input type="text" readonly th:field="*{id}">
+                </td>
+            </tr>
             <tr>
                 <td>First name:</td>
                 <td>
@@ -57,7 +63,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="submit" value="add">
+                    <input type="submit" value="edit">
                 </td>
             </tr>
             </tbody>

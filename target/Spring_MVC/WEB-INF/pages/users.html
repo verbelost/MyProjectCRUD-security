@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta acccharset="utf-8"/>
-    <title></title>
+    <title>User list</title>
 </head>
 <body>
 <div>
@@ -15,16 +15,16 @@
             <th>Last name</th>
             <th>Phone number</th>
             <th>Email</th>
+            <th>Edit</th>
             <th>Delete</th>
         </tr>
         <tr th:each="user : ${users}">
-
-
             <td th:text="${user.getId()}"></td>
             <td th:text="${user.getFirstName()}"></td>
             <td th:text="${user.getLastName()}"></td>
             <td th:text="${user.getPhoneNumber()}"></td>
             <td th:text="${user.getEmail()}"></td>
+            <td><a th:href="@{/editUser(id=${user.getId()})}">edit</a></td>
             <td><a th:href="@{/users/delete(id=${user.getId()})}">delete</a></td>
     </table>
     <h1>Add user</h1>
@@ -58,49 +58,6 @@
             <tr>
                 <td>
                     <input type="submit" value="add">
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </form>
-
-    <h1>Edit user</h1>
-    <form action="#" th:action="@{/users/edit}" th:object="${user}" method="post">
-        <table>
-            <tbody>
-            <tr>
-                <td>id:</td>
-                <td>
-                    <input type="text" th:field="*{id}">
-                </td>
-            </tr>
-            <tr>
-                <td>First name:</td>
-                <td>
-                    <input type="text" th:field="*{firstName}">
-                </td>
-            </tr>
-            <tr>
-                <td>Last name:</td>
-                <td>
-                    <input type="text" th:field="*{lastName}">
-                </td>
-            </tr>
-            <tr>
-                <td>Phone number:</td>
-                <td>
-                    <input type="text" th:field="*{phoneNumber}">
-                </td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td>
-                    <input type="text" th:field="*{email}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" value="edit">
                 </td>
             </tr>
             </tbody>

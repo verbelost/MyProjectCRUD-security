@@ -21,27 +21,30 @@ public class UserController {
     @RequestMapping(value = "/users")
     public String printUsers(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("users", userService.listUsers());
+        model.addAttribute("users", this.userService.listUsers());
         return "users";
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user) {
-        this.userService.addUser(user);
+        if (user.getId() == 0) {
+            this.userService.addUser(user);
+        } else {
+            this.userService.updateUser(user);
+        }
         return "redirect:/users";
     }
 
     @RequestMapping(value = "/users/delete")
-    public String deleteUser(@RequestParam(name = "id") int id) {
+    public String deleteUser(@RequestParam("id") int id) {
         this.userService.removeUser(id);
         return "redirect:/users";
     }
 
-    @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("user") User user) {
-        this.userService.updateUser(user);
-        return "redirect:/users";
+    @RequestMapping(value = "/editUser")
+    public String editUser(@RequestParam("id") int id, Model model) {
+        model.addAttribute("user", this.userService.getUserById(id));
+        model.addAttribute("users", this.userService.listUsers());
+        return "editUser";
     }
-
-
 }

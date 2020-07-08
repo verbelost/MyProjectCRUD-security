@@ -40,7 +40,8 @@ public class UserDaoImp implements UserDao {
     @Transactional
     @Override
     public User getUserById(int id) {
-        return sessionFactory.getCurrentSession().load(User.class, id);
+        return (User) sessionFactory.getCurrentSession().createQuery("from User where id = :id")
+                .setParameter("id", id).getSingleResult();
     }
 
     @Transactional
