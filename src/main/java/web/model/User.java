@@ -16,8 +16,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "userName")
-    private String userName;
+    @Column(name = "userName", unique = true)
+    private String name;
 
     @Column(name = "password")
     private String password;
@@ -28,9 +28,9 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(int id, String userName, String password, Set<Role> roles) {
+    public User(int id, String name, String password, Set<Role> roles) {
         this.id = id;
-        this.userName = userName;
+        this.name = name;
         this.password = password;
         this.roles = roles;
     }
@@ -55,7 +55,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return name;
     }
 
     @Override
@@ -78,8 +78,12 @@ public class User implements UserDetails {
         return true;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPassword(String password) {
@@ -92,5 +96,14 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

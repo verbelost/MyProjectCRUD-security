@@ -1,6 +1,7 @@
 package web.model;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.thymeleaf.messageresolver.IMessageResolver;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,10 +14,11 @@ public class Role implements GrantedAuthority {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "role")
-    private String role;
+    private String name;
 
     @Transient
     @ManyToMany(mappedBy = "roles")
@@ -25,9 +27,9 @@ public class Role implements GrantedAuthority {
     public Role() {
     }
 
-    public Role(Long id, String role) {
+    public Role(Long id, String name) {
         this.id = id;
-        this.role = role;
+        this.name = name;
     }
 
     public Long getId() {
@@ -38,12 +40,12 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<User> getUsers() {
@@ -56,6 +58,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return role;
+        return name;
     }
 }

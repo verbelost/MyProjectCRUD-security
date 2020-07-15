@@ -5,10 +5,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import web.model.Role;
 import web.model.User;
+
 import javax.persistence.TypedQuery;
-import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -42,14 +41,16 @@ public class UserDaoImp implements UserDao {
     @Transactional
     @Override
     public User getUserById(int id) {
-        return (User) sessionFactory.getCurrentSession().createQuery("from User where id = :id")
-                .setParameter("id", id).getSingleResult();
+        return (User) sessionFactory.getCurrentSession()
+                .createQuery("from User where id = :id")
+                .setParameter("id", id)
+                .getSingleResult();
     }
 
     @Transactional
     @Override
     public User getUserByName(String name) {
-        return (User) sessionFactory.getCurrentSession().createQuery("from User where userName = :name")
+        return (User) sessionFactory.getCurrentSession().createQuery("from User where name = :name")
                 .setParameter("name", name).getSingleResult();
     }
 
